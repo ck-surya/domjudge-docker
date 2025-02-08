@@ -18,3 +18,4 @@ services:
 networks:
   domjudge-network:
     name: domjudge-network
+    external: true

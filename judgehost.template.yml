@@ -13,7 +13,4 @@
       CONTAINER_TIMEZONE: Asia/Kolkata
     networks:
       - domjudge-network
-      
-networks:
-  domjudge-network:
-    name: domjudge-network
+

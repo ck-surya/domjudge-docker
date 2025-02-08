@@ -1,5 +1,3 @@
-
-```
 timedatectl set-timezone 'Asia/Kolkata'
 apt --assume-yes remove unattended-upgrades
 apt --assume-yes update
@@ -19,12 +17,11 @@ ufw status numbered
 apt install plocate
 
 #In /etc/default/grub, add 'cgroup_enable=memory swapaccount=1' to #GRUB_CMDLINE_LINUX_DEFAULT. On modern distros (e.g. Debian bullseye and Ubuntu Jammy #Jellyfish) which have cgroup v2 enabled by default, we need to add #'systemd.unified_cgroup_hierarchy=0' as well.
-```
+
 vim /etc/default/grub
 GRUB_CMDLINE_LINUX_DEFAULT="cgroup_enable=memory swapaccount=1 systemd.unified_cgroup_hierarchy=0"
 update-grub
 reboot
-```
 
 mkdir nonroot
 vim nonroot/cloud-config.sh
@@ -102,16 +99,14 @@ export DJ_DB_USER=domjudge #enter domjudge db user here
 export DJ_DB_PASSWORD=djpw #enter domjudge db password here 
 export DB_ROOT_PASSWORD=rootpw #enter mariadb root password here 
 docker compose -f mariadb.yml up -d
+export DB_HOST=domjudge.cpas8kasitfl.us-east-1.rds.amazonaws.com
+export DB_ROOT_USER=admin
+export DB_ROOT_PASSWORD=rootpw
 export DJ_DB=domjudge
 export DJ_DB_USER=domjudge
 export DJ_DB_PASSWORD=djpw
-export DB_ROOT_PASSWORD=rootpw
 export SITES=\`test1.indiaicpc.in\`
-docker compose -f domserver.yml up -d
+docker compose -f domserver-main.yml up -d
 #check the logs of the domserver and copy the admin password and the judgehost password from it and set it in the below line
-```
-```
 export JUDGEHOST_PASSWORD=SOMEPASSWORD
 ./generate-judgehosts-compose.sh
-
-```
